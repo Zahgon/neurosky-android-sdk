@@ -20,38 +20,38 @@ import com.neurosky.thinkgear.TGDevice;
 
 public class DefaultPreconditions implements Preconditions {
 
-  @Override
-  public boolean isConnecting(TGDevice device) {
-    return device != null && device.getState() == TGDevice.STATE_CONNECTING;
-  }
+    @Override
+    public boolean isConnecting(TGDevice device) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public boolean isConnected(TGDevice device) {
-    return device != null && device.getState() == TGDevice.STATE_CONNECTED;
-  }
+    @Override
+    public boolean isConnected(TGDevice device) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public boolean canConnect(TGDevice device) {
-    return !isConnecting(device) && !isConnected(device);
-  }
+    @Override
+    public boolean canConnect(TGDevice device) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public boolean isBluetoothAdapterInitialized() {
-    return isBluetoothAdapterInitialized(BluetoothAdapter.getDefaultAdapter());
-  }
+    @Override
+    public boolean isBluetoothAdapterInitialized() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public boolean isBluetoothAdapterInitialized(BluetoothAdapter bluetoothAdapter) {
-    return bluetoothAdapter != null;
-  }
+    @Override
+    public boolean isBluetoothAdapterInitialized(BluetoothAdapter bluetoothAdapter) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public boolean isBluetoothEnabled() {
-    return isBluetoothEnabled(BluetoothAdapter.getDefaultAdapter());
-  }
+    @Override
+    public boolean isBluetoothEnabled() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public boolean isBluetoothEnabled(BluetoothAdapter bluetoothAdapter) {
-    return (bluetoothAdapter != null && bluetoothAdapter.isEnabled());
-  }
+    @Override
+    public boolean isBluetoothEnabled(BluetoothAdapter bluetoothAdapter) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

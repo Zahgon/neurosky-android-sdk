@@ -21,17 +21,14 @@ import com.github.pwittchen.neurosky.library.listener.DeviceMessageListener;
 
 public class DeviceMessageHandler extends Handler {
 
-  private DeviceMessageListener listener;
+    private DeviceMessageListener listener;
 
-  DeviceMessageHandler(final DeviceMessageListener deviceMessageListener) {
-    this.listener = deviceMessageListener;
-  }
-
-  @Override public void handleMessage(Message message) {
-    super.handleMessage(message);
-
-    if (listener != null) {
-      listener.onMessageReceived(message);
+    DeviceMessageHandler(final DeviceMessageListener deviceMessageListener) {
+        this.listener = deviceMessageListener;
     }
-  }
+
+    @Override
+    public void handleMessage(Message message) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -16,32 +16,33 @@
 package com.github.pwittchen.neurosky.library.message.enums;
 
 public enum BrainWave {
-  DELTA(1),
-  THETA(2),
-  LOW_ALPHA(3),
-  HIGH_ALPHA(4),
-  LOW_BETA(5),
-  HIGH_BETA(6),
-  LOW_GAMMA(7),
-  MID_GAMMA(8);
 
-  private int type;
-  private int value;
+    DELTA(1),
+    THETA(2),
+    LOW_ALPHA(3),
+    HIGH_ALPHA(4),
+    LOW_BETA(5),
+    HIGH_BETA(6),
+    LOW_GAMMA(7),
+    MID_GAMMA(8);
 
-  BrainWave(int type) {
-    this.type = type;
-  }
+    private int type;
 
-  public int getType() {
-    return type;
-  }
+    private int value;
 
-  public int getValue() {
-    return value;
-  }
+    BrainWave(int type) {
+        this.type = type;
+    }
 
-  public BrainWave value(int value) {
-    this.value = value;
-    return this;
-  }
+    public int getType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public int getValue() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public BrainWave value(int value) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

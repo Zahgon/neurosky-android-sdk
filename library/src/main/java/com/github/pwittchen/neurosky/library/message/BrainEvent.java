@@ -20,27 +20,31 @@ import com.github.pwittchen.neurosky.library.message.enums.Signal;
 import com.github.pwittchen.neurosky.library.message.enums.State;
 import java.util.Set;
 
-@SuppressWarnings("PMD") // I want to have the same methods names as field names
+// I want to have the same methods names as field names
+@SuppressWarnings("PMD")
 public class BrainEvent {
-  private final State state;
-  private final Signal signal;
-  private final Set<BrainWave> brainWaves;
 
-  public BrainEvent(final State state, final Signal signal, final Set<BrainWave> brainWaves) {
-    this.state = state;
-    this.signal = signal;
-    this.brainWaves = brainWaves;
-  }
+    private final State state;
 
-  public State state() {
-    return state;
-  }
+    private final Signal signal;
 
-  public Signal signal() {
-    return signal;
-  }
+    private final Set<BrainWave> brainWaves;
 
-  public Set<BrainWave> brainWaves() {
-    return brainWaves;
-  }
+    public BrainEvent(final State state, final Signal signal, final Set<BrainWave> brainWaves) {
+        this.state = state;
+        this.signal = signal;
+        this.brainWaves = brainWaves;
+    }
+
+    public State state() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public Signal signal() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public Set<BrainWave> brainWaves() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

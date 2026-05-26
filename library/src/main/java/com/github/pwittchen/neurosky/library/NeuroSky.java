@@ -25,96 +25,87 @@ import com.neurosky.thinkgear.TGDevice;
 
 public class NeuroSky {
 
-  private boolean rawSignalEnabled = false;
-  private TGDevice device;
-  private DeviceMessageHandler handler;
-  private Preconditions preconditions;
+    private boolean rawSignalEnabled = false;
 
-  public NeuroSky(final DeviceMessageListener listener) {
-    this(listener, new DefaultPreconditions());
-  }
+    private TGDevice device;
 
-  protected NeuroSky(final DeviceMessageListener listener, @NonNull Preconditions preconditions) {
-    this.preconditions = preconditions;
-    if (preconditions.isBluetoothAdapterInitialized()) {
-      handler = new DeviceMessageHandler(listener);
-      device = new TGDevice(BluetoothAdapter.getDefaultAdapter(), handler);
-    }
-  }
+    private DeviceMessageHandler handler;
 
-  public void connect() throws BluetoothNotEnabledException {
-    if (!preconditions.isBluetoothEnabled()) {
-      throw new BluetoothNotEnabledException();
+    private Preconditions preconditions;
+
+    public NeuroSky(final DeviceMessageListener listener) {
+        this(listener, new DefaultPreconditions());
     }
 
-    if (canConnect()) {
-      openConnection();
+    protected NeuroSky(final DeviceMessageListener listener, @NonNull Preconditions preconditions) {
+        this.preconditions = preconditions;
+        if (preconditions.isBluetoothAdapterInitialized()) {
+            handler = new DeviceMessageHandler(listener);
+            device = new TGDevice(BluetoothAdapter.getDefaultAdapter(), handler);
+        }
     }
-  }
 
-  protected void openConnection() {
-    device.connect(rawSignalEnabled);
-  }
-
-  public void disconnect() {
-    if (isConnected()) {
-      closeConnection();
+    public void connect() throws BluetoothNotEnabledException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
 
-  protected void closeConnection() {
-    device.close();
-  }
-
-  public void enableRawSignal() {
-    rawSignalEnabled = true;
-  }
-
-  public void disableRawSignal() {
-    rawSignalEnabled = false;
-  }
-
-  public boolean isRawSignalEnabled() {
-    return rawSignalEnabled;
-  }
-
-  public void start() {
-    if (isConnected()) {
-      startMonitoring();
+    protected void openConnection() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
 
-  protected void startMonitoring() {
-    device.start();
-  }
-
-  public void stop() {
-    if (isConnected()) {
-      stopMonitoring();
+    public void disconnect() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
 
-  protected void stopMonitoring() {
-    device.stop();
-  }
+    protected void closeConnection() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public boolean canConnect() {
-    return preconditions.canConnect(device);
-  }
+    public void enableRawSignal() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public boolean isConnected() {
-    return preconditions.isConnected(device);
-  }
+    public void disableRawSignal() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public boolean isConnecting() {
-    return preconditions.isConnecting(device);
-  }
+    public boolean isRawSignalEnabled() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public TGDevice getDevice() {
-    return device;
-  }
+    public void start() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public DeviceMessageHandler getHandler() {
-    return handler;
-  }
+    protected void startMonitoring() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void stop() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    protected void stopMonitoring() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public boolean canConnect() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public boolean isConnected() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public boolean isConnecting() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public TGDevice getDevice() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public DeviceMessageHandler getHandler() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -36,132 +36,108 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class RxNeuroSky {
-  private final static EventBus eventBus = EventBus.create();
-  private boolean rawSignalEnabled = false;
-  private TGDevice device;
-  private DeviceMessageHandler handler;
-  private Preconditions preconditions;
 
-  public RxNeuroSky() {
-    this(new ExtendedDeviceMessageListener() {
-      private State state = State.UNKNOWN;
+    private final static EventBus eventBus = EventBus.create();
 
-      @Override public void onStateChange(State state) {
-        this.state = state;
-        eventBus.send(new BrainEvent(state, Signal.STATE_CHANGE, new HashSet<>()));
-      }
+    private boolean rawSignalEnabled = false;
 
-      @Override public void onSignalChange(Signal signal) {
-        eventBus.send(new BrainEvent(state, signal, new HashSet<>()));
-      }
+    private TGDevice device;
 
-      @Override public void onBrainWavesChange(Set<BrainWave> brainWaves) {
-        eventBus.send(new BrainEvent(state, Signal.EEG_POWER, brainWaves));
-      }
-    });
-  }
+    private DeviceMessageHandler handler;
 
-  protected RxNeuroSky(final DeviceMessageListener listener) {
-    this(listener, new DefaultPreconditions());
-  }
+    private Preconditions preconditions;
 
-  protected RxNeuroSky(final DeviceMessageListener listener, @NonNull Preconditions preconditions) {
-    this.preconditions = preconditions;
-    if (preconditions.isBluetoothAdapterInitialized()) {
-      handler = new DeviceMessageHandler(listener);
-      device = new TGDevice(BluetoothAdapter.getDefaultAdapter(), handler);
+    public RxNeuroSky() {
+        this(new ExtendedDeviceMessageListener() {
+
+            private State state = State.UNKNOWN;
+
+            @Override
+            public void onStateChange(State state) {
+                throw new UnsupportedOperationException("STUB: not implemented");
+            }
+
+            @Override
+            public void onSignalChange(Signal signal) {
+                throw new UnsupportedOperationException("STUB: not implemented");
+            }
+
+            @Override
+            public void onBrainWavesChange(Set<BrainWave> brainWaves) {
+                throw new UnsupportedOperationException("STUB: not implemented");
+            }
+        });
     }
-  }
 
-  public Flowable<BrainEvent> stream(BackpressureStrategy backpressureStrategy) {
-    return eventBus.receive(backpressureStrategy);
-  }
+    protected RxNeuroSky(final DeviceMessageListener listener) {
+        this(listener, new DefaultPreconditions());
+    }
 
-  public Flowable<BrainEvent> stream() {
-    return stream(BackpressureStrategy.BUFFER);
-  }
+    protected RxNeuroSky(final DeviceMessageListener listener, @NonNull Preconditions preconditions) {
+        this.preconditions = preconditions;
+        if (preconditions.isBluetoothAdapterInitialized()) {
+            handler = new DeviceMessageHandler(listener);
+            device = new TGDevice(BluetoothAdapter.getDefaultAdapter(), handler);
+        }
+    }
 
-  public Completable connect() {
-    return Completable.create(emitter -> {
-      if (!preconditions.isBluetoothEnabled()) {
-        emitter.onError(new BluetoothNotEnabledException());
-      }
+    public Flowable<BrainEvent> stream(BackpressureStrategy backpressureStrategy) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-      if (preconditions.canConnect(device)) {
-        openConnection();
-        emitter.onComplete();
-      } else {
-        emitter.onError(new BluetoothConnectingOrConnectedException());
-      }
-    });
-  }
+    public Flowable<BrainEvent> stream() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  protected void openConnection() {
-    device.connect(rawSignalEnabled);
-  }
+    public Completable connect() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public Completable disconnect() {
-    return Completable.create(emitter -> {
-      if (preconditions.isConnected(device)) {
-        closeConnection();
-        emitter.onComplete();
-      } else {
-        emitter.onError(new BluetoothNotConnectedException());
-      }
-    });
-  }
+    protected void openConnection() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  protected void closeConnection() {
-    device.close();
-  }
+    public Completable disconnect() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void enableRawSignal() {
-    rawSignalEnabled = true;
-  }
+    protected void closeConnection() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void disableRawSignal() {
-    rawSignalEnabled = false;
-  }
+    public void enableRawSignal() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public boolean isRawSignalEnabled() {
-    return rawSignalEnabled;
-  }
+    public void disableRawSignal() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public Completable start() {
-    return Completable.create(emitter -> {
-      if (preconditions.isConnected(device)) {
-        startMonitoring();
-        emitter.onComplete();
-      } else {
-        emitter.onError(new BluetoothNotConnectedException());
-      }
-    });
-  }
+    public boolean isRawSignalEnabled() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  protected void startMonitoring() {
-    device.start();
-  }
+    public Completable start() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public Completable stop() {
-    return Completable.create(emitter -> {
-      if (preconditions.isConnected(device)) {
-        stopMonitoring();
-        emitter.onComplete();
-      } else {
-        emitter.onError(new BluetoothNotConnectedException());
-      }
-    });
-  }
+    protected void startMonitoring() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  protected void stopMonitoring() {
-    device.stop();
-  }
+    public Completable stop() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public TGDevice getDevice() {
-    return device;
-  }
+    protected void stopMonitoring() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public DeviceMessageHandler getHandler() {
-    return handler;
-  }
+    public TGDevice getDevice() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public DeviceMessageHandler getHandler() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

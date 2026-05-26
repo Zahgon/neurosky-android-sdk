@@ -23,23 +23,21 @@ import io.reactivex.subjects.Subject;
 
 class EventBus {
 
-  private final Subject<Object> bus = PublishSubject.create().toSerialized();
+    private final Subject<Object> bus = PublishSubject.create().toSerialized();
 
-  private EventBus() {
-  }
+    private EventBus() {
+    }
 
-  public static EventBus create() {
-    return new EventBus();
-  }
+    public static EventBus create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void send(final BrainEvent object) {
-    bus.onNext(object);
-  }
+    public void send(final BrainEvent object) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @SuppressWarnings("unchecked")
-  public Flowable<BrainEvent> receive(BackpressureStrategy backpressureStrategy) {
-    return (Flowable<BrainEvent>) (Flowable<?>) bus
-        .toFlowable(backpressureStrategy)
-        .filter(object -> object instanceof BrainEvent);
-  }
+    @SuppressWarnings("unchecked")
+    public Flowable<BrainEvent> receive(BackpressureStrategy backpressureStrategy) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

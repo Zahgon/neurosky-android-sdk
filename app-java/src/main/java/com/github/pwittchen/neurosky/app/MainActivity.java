@@ -20,105 +20,108 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-  private final static String LOG_TAG = "NeuroSky";
-  private NeuroSky neuroSky;
+    private final static String LOG_TAG = "NeuroSky";
 
-  @BindView(R.id.tv_state) TextView tvState;
-  @BindView(R.id.tv_attention) TextView tvAttention;
-  @BindView(R.id.tv_meditation) TextView tvMeditation;
-  @BindView(R.id.tv_blink) TextView tvBlink;
+    private NeuroSky neuroSky;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    ButterKnife.bind(this);
-    neuroSky = createNeuroSky();
-  }
+    @BindView(R.id.tv_state)
+    TextView tvState;
 
-  @Override protected void onResume() {
-    super.onResume();
-    if (neuroSky != null && neuroSky.isConnected()) {
-      neuroSky.start();
-    }
-  }
+    @BindView(R.id.tv_attention)
+    TextView tvAttention;
 
-  @Override protected void onPause() {
-    super.onPause();
-    if (neuroSky != null && neuroSky.isConnected()) {
-      neuroSky.stop();
-    }
-  }
+    @BindView(R.id.tv_meditation)
+    TextView tvMeditation;
 
-  @NonNull private NeuroSky createNeuroSky() {
-    return new NeuroSky(new ExtendedDeviceMessageListener() {
-      @Override public void onStateChange(State state) {
-        handleStateChange(state);
-      }
+    @BindView(R.id.tv_blink)
+    TextView tvBlink;
 
-      @Override public void onSignalChange(Signal signal) {
-        handleSignalChange(signal);
-      }
-
-      @Override public void onBrainWavesChange(Set<BrainWave> brainWaves) {
-        handleBrainWavesChange(brainWaves);
-      }
-    });
-  }
-
-  private void handleStateChange(final State state) {
-    if (neuroSky != null && state.equals(State.CONNECTED)) {
-      neuroSky.start();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    tvState.setText(state.toString());
-    Log.d(LOG_TAG, state.toString());
-  }
-
-  private void handleSignalChange(final Signal signal) {
-    switch (signal) {
-      case ATTENTION:
-        tvAttention.setText(getFormattedMessage("attention: %d", signal));
-        break;
-      case MEDITATION:
-        tvMeditation.setText(getFormattedMessage("meditation: %d", signal));
-        break;
-      case BLINK:
-        tvBlink.setText(getFormattedMessage("blink: %d", signal));
-        break;
+    @Override
+    protected void onResume() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    Log.d(LOG_TAG, String.format("%s: %d", signal.toString(), signal.getValue()));
-  }
-
-  private String getFormattedMessage(String messageFormat, Signal signal) {
-    return String.format(Locale.getDefault(), messageFormat, signal.getValue());
-  }
-
-  private void handleBrainWavesChange(final Set<BrainWave> brainWaves) {
-    for (BrainWave brainWave : brainWaves) {
-      Log.d(LOG_TAG, String.format("%s: %d", brainWave.toString(), brainWave.getValue()));
+    @Override
+    protected void onPause() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
 
-  @OnClick(R.id.btn_connect) void connect() {
-    try {
-      neuroSky.connect();
-    } catch (BluetoothNotEnabledException e) {
-      Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-      Log.d(LOG_TAG, e.getMessage());
+    @NonNull
+    private NeuroSky createNeuroSky() {
+        return new NeuroSky(new ExtendedDeviceMessageListener() {
+
+            @Override
+            public void onStateChange(State state) {
+                throw new UnsupportedOperationException("STUB: not implemented");
+            }
+
+            @Override
+            public void onSignalChange(Signal signal) {
+                throw new UnsupportedOperationException("STUB: not implemented");
+            }
+
+            @Override
+            public void onBrainWavesChange(Set<BrainWave> brainWaves) {
+                throw new UnsupportedOperationException("STUB: not implemented");
+            }
+        });
     }
-  }
 
-  @OnClick(R.id.btn_disconnect) void disconnect() {
-    neuroSky.disconnect();
-  }
+    private void handleStateChange(final State state) {
+        if (neuroSky != null && state.equals(State.CONNECTED)) {
+            neuroSky.start();
+        }
+        tvState.setText(state.toString());
+        Log.d(LOG_TAG, state.toString());
+    }
 
-  @OnClick(R.id.btn_start_monitoring) void startMonitoring() {
-    neuroSky.start();
-  }
+    private void handleSignalChange(final Signal signal) {
+        switch(signal) {
+            case ATTENTION:
+                tvAttention.setText(getFormattedMessage("attention: %d", signal));
+                break;
+            case MEDITATION:
+                tvMeditation.setText(getFormattedMessage("meditation: %d", signal));
+                break;
+            case BLINK:
+                tvBlink.setText(getFormattedMessage("blink: %d", signal));
+                break;
+        }
+        Log.d(LOG_TAG, String.format("%s: %d", signal.toString(), signal.getValue()));
+    }
 
-  @OnClick(R.id.btn_stop_monitoring) void stopMonitoring() {
-    neuroSky.stop();
-  }
+    private String getFormattedMessage(String messageFormat, Signal signal) {
+        return String.format(Locale.getDefault(), messageFormat, signal.getValue());
+    }
+
+    private void handleBrainWavesChange(final Set<BrainWave> brainWaves) {
+        for (BrainWave brainWave : brainWaves) {
+            Log.d(LOG_TAG, String.format("%s: %d", brainWave.toString(), brainWave.getValue()));
+        }
+    }
+
+    @OnClick(R.id.btn_connect)
+    void connect() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @OnClick(R.id.btn_disconnect)
+    void disconnect() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @OnClick(R.id.btn_start_monitoring)
+    void startMonitoring() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @OnClick(R.id.btn_stop_monitoring)
+    void stopMonitoring() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }
